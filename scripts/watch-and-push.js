@@ -11,7 +11,7 @@ import chokidar from 'chokidar';
 import { execSync } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getOriginInfo, getRepoName } from './lib/get-repo-name.js';
+import { getOriginInfo } from './lib/get-repo-name.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -34,7 +34,7 @@ function run(cmd, opts = {}) {
 
 function buildAndDeploy() {
   cooldownUntil = Date.now() + COOLDOWN_MS;
-  const repoName = getRepoName();
+  const { owner, repoName } = getOriginInfo();
   const basePath = `/${repoName}/`;
   console.log('\n[watch-and-push] Changes detected, building and deploying...');
   console.log(`[watch-and-push] Building with base: ${basePath}`);
@@ -43,7 +43,7 @@ function buildAndDeploy() {
     console.error('[watch-and-push] Build failed.');
   } else if (run('npx gh-pages -d dist')) {
     console.log('[watch-and-push] Deployed dist to gh-pages.');
-    console.log(`[watch-and-push] URL: https://<owner>.github.io/${repoName}/ (use trailing slash)`);
+    console.log(`[watch-and-push] URL: https://${owner}.github.io/${repoName}/ (use trailing slash)`);
     console.log('[watch-and-push] If you don\'t see changes: Settings → Pages → Source = "Deploy from a branch" → gh-pages');
   } else {
     console.error('[watch-and-push] gh-pages push failed.');
