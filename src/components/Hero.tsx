@@ -1,12 +1,12 @@
-import { Grid, Column, Button } from '@carbon/react'
-import './Hero.scss'
+import { Grid, Column, Button } from "@carbon/react";
+import "./Hero.scss";
 
 export function Hero() {
   return (
     <section className="hero">
       <Grid fullWidth className="hero__grid">
         <Column lg={16} md={8} sm={4} className="hero__content">
-          <h1 className="hero__title">Lead in the AI-first future</h1>
+          <h1 className="hero__title">Hello World!</h1>
           <p className="hero__description">
             Uncover the 5 key predictions that will define tomorrow's AI-first
             business models and get a head start to the next-gen competitive
@@ -23,5 +23,5 @@ export function Hero() {
         </Column>
       </Grid>
     </section>
-  )
+  );
 }
