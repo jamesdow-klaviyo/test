@@ -10,11 +10,10 @@ type ProjectModule = {
 
 const modules = import.meta.glob<ProjectModule>('../projects/*/index.tsx', { eager: true })
 
-const previewGlob = import.meta.glob<string>('../projects/*/preview.*', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
+const previewGlob = import.meta.glob<string | { default: string }>(
+  '../projects/*/preview.{png,jpg,jpeg,webp}',
+  { eager: true, query: '?url', import: 'default' }
+)
 
 export const projectNames = Object.keys(modules)
   .map((k) => k.replace('../projects/', '').replace('/index.tsx', ''))
@@ -24,7 +23,9 @@ function getPreviewUrl(projectName: string): string | undefined {
   const key = Object.keys(previewGlob).find(
     (k) => k.startsWith(`../projects/${projectName}/preview.`)
   )
-  return key ? (previewGlob[key] as string) : undefined
+  if (!key) return undefined
+  const v = previewGlob[key]
+  return typeof v === 'string' ? v : v?.default
 }
 
 export type ProjectMeta = {
