@@ -68,7 +68,7 @@ function TodoList() {
             to="/"
             className="ml-auto text-sm text-muted-foreground hover:text-foreground"
           >
-            ← All prototypes
+            ← All projects
           </Link>
         </nav>
 

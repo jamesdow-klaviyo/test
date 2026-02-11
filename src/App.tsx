@@ -1,5 +1,5 @@
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
-import { getPrototypeRoutes, prototypeNames } from './registry'
+import { getProjectRoutes, projectNames } from './registry'
 
 const base = import.meta.env.BASE_URL
 
@@ -16,15 +16,15 @@ function NotFoundPage() {
 function HomePage() {
   return (
     <main style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '40rem' }}>
-      <h1>Prototypes</h1>
+      <h1>Projects</h1>
       <p style={{ color: '#666', marginBottom: '1.5rem' }}>
-        Each link is a React route. Add a folder under <code>prototypes/</code> (project root) with an <code>index.tsx</code> to add one.
+        Each link is a React route. Add a folder under <code>projects/</code> (project root) with an <code>index.tsx</code> to add one.
       </p>
-      {prototypeNames.length === 0 ? (
-        <p>No prototypes yet. Add <code>prototypes/my-name/index.tsx</code> (export default + optional <code>routes</code>).</p>
+      {projectNames.length === 0 ? (
+        <p>No projects yet. Add <code>projects/my-name/index.tsx</code> (export default + optional <code>routes</code>).</p>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          {prototypeNames.map((name) => (
+          {projectNames.map((name) => (
             <li key={name} style={{ marginBottom: '0.5rem' }}>
               <Link to={name} style={{ color: '#0066cc' }}>
                 {name}
@@ -40,7 +40,7 @@ function HomePage() {
 const router = createBrowserRouter(
   [
     { path: '/', element: <HomePage /> },
-    ...getPrototypeRoutes(),
+    ...getProjectRoutes(),
     { path: '*', element: <NotFoundPage /> },
   ],
   { basename: base.replace(/\/$/, '') || '/' }

@@ -27,7 +27,7 @@ export default function ExamplePrototype() {
         <Link to="." style={{ color: isOverview ? '#000' : '#0066cc' }}>Overview</Link>
         <Link to="step1" style={{ color: location.pathname.includes('step1') ? '#000' : '#0066cc' }}>Step 1</Link>
         <Link to="step2" style={{ color: location.pathname.includes('step2') ? '#000' : '#0066cc' }}>Step 2</Link>
-        <Link to="/" style={{ marginLeft: 'auto', color: '#666' }}>← All prototypes</Link>
+        <Link to="/" style={{ marginLeft: 'auto', color: '#666' }}>← All projects</Link>
       </nav>
       <Outlet />
     </div>
