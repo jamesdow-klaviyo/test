@@ -1,6 +1,6 @@
 import "./index.css";
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "./components/button";
 import { Input } from "./components/input";
 import { Checkbox } from "./components/checkbox";
@@ -12,6 +12,9 @@ import {
   CardTitle,
 } from "./components/card";
 
+export const title = "Todo";
+export const description = "Basic todo template — add, complete, and remove tasks.";
+
 export type TodoItem = {
   id: string;
   title: string;
@@ -19,11 +22,7 @@ export type TodoItem = {
 };
 
 function TodoList() {
-  const [items, setItems] = useState<TodoItem[]>([
-    { id: "1", title: "Learn Tailwind CSS", completed: true },
-    { id: "2", title: "Try shadcn/ui components", completed: false },
-    { id: "3", title: "Build a todo app", completed: false },
-  ]);
+  const [items, setItems] = useState<TodoItem[]>([]);
   const [newTitle, setNewTitle] = useState("");
 
   const addTodo = () => {
@@ -52,21 +51,13 @@ function TodoList() {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const location = useLocation();
-
   return (
     <div className="min-h-screen bg-background p-6">
       <div className="mx-auto max-w-xl space-y-6">
-        <nav className="flex items-center gap-4 border-b border-border pb-4">
-          <Link
-            to="."
-            className={`text-sm font-medium ${location.pathname.endsWith("todo") || location.pathname.endsWith("todo/") ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-          >
-            Todo
-          </Link>
+        <nav className="flex items-center border-b border-border pb-4">
           <Link
             to="/"
-            className="ml-auto text-sm text-muted-foreground hover:text-foreground"
+            className="text-sm text-muted-foreground hover:text-foreground"
           >
             ← All projects
           </Link>
@@ -76,7 +67,7 @@ function TodoList() {
           <CardHeader>
             <CardTitle>To do</CardTitle>
             <CardDescription>
-              Add and tick off tasks. Built with Tailwind CSS and shadcn/ui.
+              Add tasks, mark them done, or remove them.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

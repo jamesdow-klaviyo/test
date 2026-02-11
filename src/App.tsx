@@ -24,9 +24,32 @@ function HomePage() {
         <p>No projects yet. Add <code>projects/my-name/index.tsx</code> (export default + optional <code>routes</code>).</p>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          {projectMeta.map(({ name, title, description }) => (
-            <li key={name} style={{ marginBottom: '1rem' }}>
-              <Link to={name} style={{ color: '#0066cc', fontWeight: 500 }}>
+          {projectMeta.map(({ name, title, description, preview }) => (
+            <li key={name} style={{ marginBottom: '1.5rem' }}>
+              <Link
+                to={name}
+                style={{
+                  color: '#0066cc',
+                  fontWeight: 500,
+                  display: 'block',
+                  textDecoration: 'none',
+                }}
+              >
+                {preview != null && (
+                  <img
+                    src={preview}
+                    alt=""
+                    style={{
+                      width: '100%',
+                      maxWidth: '20rem',
+                      height: 'auto',
+                      marginBottom: '0.5rem',
+                      borderRadius: '0.5rem',
+                      border: '1px solid #e5e5e5',
+                      display: 'block',
+                    }}
+                  />
+                )}
                 {title ?? name}
               </Link>
               {description != null && (

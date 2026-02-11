@@ -10,11 +10,29 @@ type ProjectModule = {
 
 const modules = import.meta.glob<ProjectModule>('../projects/*/index.tsx', { eager: true })
 
+const previewGlob = import.meta.glob<string>('../projects/*/preview.*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
 export const projectNames = Object.keys(modules)
   .map((k) => k.replace('../projects/', '').replace('/index.tsx', ''))
   .sort()
 
-export type ProjectMeta = { name: string; title?: string; description?: string }
+function getPreviewUrl(projectName: string): string | undefined {
+  const key = Object.keys(previewGlob).find(
+    (k) => k.startsWith(`../projects/${projectName}/preview.`)
+  )
+  return key ? (previewGlob[key] as string) : undefined
+}
+
+export type ProjectMeta = {
+  name: string
+  title?: string
+  description?: string
+  preview?: string
+}
 
 export const projectMeta: ProjectMeta[] = projectNames.map((name) => {
   const key = `../projects/${name}/index.tsx`
@@ -23,6 +41,7 @@ export const projectMeta: ProjectMeta[] = projectNames.map((name) => {
     name,
     title: mod?.title,
     description: mod?.description,
+    preview: getPreviewUrl(name),
   }
 })
 

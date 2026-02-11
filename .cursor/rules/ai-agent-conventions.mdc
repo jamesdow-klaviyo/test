@@ -9,7 +9,7 @@ This repo is a **project gallery**: the homepage lists all projects from `projec
 
 ## Project model
 
-- **Projects** live under `projects/<name>/`. Each project is a route (e.g. `/example`).
+- **Projects** live under `projects/<name>/`. Each project is a route (e.g. `/todo`).
 - The homepage and routing are **auto-generated** from folder names; no registration step.
 - Only **`index.tsx`** is required per project. Optionally add `index.css`, `components/`, or `lib/` inside that project folder.
 
@@ -45,4 +45,4 @@ export const routes = [
 ]
 ```
 
-Keep project-specific CSS, components, and helpers inside that project folder (e.g. `projects/my-app/components/`, `projects/my-app/index.css`). See `projects/example/` and `projects/todo/` for reference.
+Keep project-specific CSS, components, and helpers inside that project folder (e.g. `projects/my-app/components/`, `projects/my-app/index.css`). Use **`projects/todo/`** as the template for new projects.

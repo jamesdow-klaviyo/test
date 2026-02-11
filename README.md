@@ -14,7 +14,7 @@
    npm install
    npm run dev
    ```
-4. Open [http://localhost:5173](http://localhost:5173). The homepage lists all projects; each is a route (e.g. `/example`) with optional sub-routes.
+4. Open [http://localhost:5173](http://localhost:5173). The homepage lists all projects; each is a route (e.g. `/todo`) with optional sub-routes.
 
 Your live site will be at **`https://<your-username>.github.io/<repo-name>/`** (use the trailing slash). Base path and deploys use your repo name from `git remote` — no configuration needed.
 
@@ -43,32 +43,22 @@ Each project is a **React route** under **`projects/`** (project root). Add a fo
 - **`title`** (optional) – Display name on the homepage (defaults to the folder name).
 - **`description`** (optional) – Short blurb shown under the link on the homepage.
 
-The homepage list is built from the folder names in `projects/` at build time. Sub-routes give you in-project navigation (e.g. `/example/step1`).
+The homepage list is built from the folder names in `projects/` at build time. Sub-routes give you in-project navigation (e.g. `/todo/...`).
 
 ### Project folder structure
 
-Projects are **standalone**: keep each one’s code and assets inside its own folder.
-
-**Minimal (e.g. `example`):**
+Projects are **standalone**: keep each one’s code and assets inside its own folder. Use **`projects/todo/`** as the template: copy it and rename to start a new project.
 
 ```
 projects/
-  example/
-    index.tsx          # default export = layout; optional routes
-```
-
-**With its own UI and styles (e.g. `todo`):**
-
-```
-projects/
-  todo/
-    index.tsx          # layout + optional routes; can import local CSS
-    index.css          # optional: Tailwind + theme for this project only
-    components/       # optional: project-specific components
+  todo/                 # template project — copy this folder
+    index.tsx           # layout + optional routes; can import local CSS
+    index.css           # optional: Tailwind + theme for this project only
+    components/         # optional: project-specific components
       button.tsx
       card.tsx
       ...
-    lib/               # optional: helpers (e.g. utils.ts for cn())
+    lib/                # optional: helpers (e.g. utils.ts for cn())
       utils.ts
 ```
 
@@ -110,7 +100,7 @@ Only **`index.tsx`** is required. Everything else (CSS, `components/`, `lib/`) i
    ```
 
 4. **(Optional)** Export `title` and/or `description` for the homepage list (e.g. `export const title = 'My Thing'`).
-5. **(Optional)** For project-only styles or components, add `index.css`, `components/`, or `lib/` inside the same folder and import them from `index.tsx`. See `projects/todo/` for an example.
+5. **(Optional)** For project-only styles or components, add `index.css`, `components/`, or `lib/` inside the same folder and import them from `index.tsx`. The **`projects/todo/`** project is the reference template.
 
 ---
 
