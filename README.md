@@ -36,12 +36,12 @@ Both use your fork’s repo name automatically. After deploy, allow 30–90 seco
 
 ## Prototypes
 
-Each prototype is a **React route** under **`src/prototypes/`**. Add a folder (e.g. `src/prototypes/my-app/`) with an **`index.tsx`** that exports:
+Each prototype is a **React route** under **`prototypes/`** (project root). Add a folder (e.g. `prototypes/my-app/`) with an **`index.tsx`** that exports:
 
 - **`default`** – The layout component (use `<Outlet />` for sub-routes and `<Link>` for nav).
 - **`routes`** (optional) – Array of `{ path, Component }` for sub-routes (e.g. `{ path: 'step1', Component: Step1 }`). Use `path: '/'` (or `''`) for the index view.
 
-The homepage list is built from the folder names in `src/prototypes/` at build time. Sub-routes give you in-prototype navigation (e.g. `/example/step1`). See `src/prototypes/example/index.tsx` for the pattern.
+The homepage list is built from the folder names in `prototypes/` at build time. Sub-routes give you in-prototype navigation (e.g. `/example/step1`). See `prototypes/example/index.tsx` for the pattern.
 
 ---
 
