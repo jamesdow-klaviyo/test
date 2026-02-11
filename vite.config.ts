@@ -7,13 +7,6 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: process.env.BASE_PATH || '/',
   plugins: [react(), tailwindcss()],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: ['import', 'legacy-js-api'],
-      },
-    },
-  },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
