@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "node scripts/build-and-deploy.js",
-    "watch:push": "sh -c 'ulimit -n 10240 2>/dev/null; exec node scripts/watch-and-push.js'"
+    "watch:push": "node scripts/watch-and-push.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

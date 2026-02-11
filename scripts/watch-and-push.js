@@ -85,6 +85,8 @@ const watchDirs = [
 const watcher = chokidar.watch(watchDirs, {
   persistent: true,
   ignoreInitial: true,
+  usePolling: true,
+  interval: 500,
 });
 
 watcher.on('change', (p) => {
