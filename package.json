@@ -13,9 +13,11 @@
     "watch:push": "node scripts/watch-and-push.js"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.13.0"
+    "react-router-dom": "^7.13.0",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
