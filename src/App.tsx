@@ -3,6 +3,16 @@ import { getPrototypeRoutes, prototypeNames } from './registry'
 
 const base = import.meta.env.BASE_URL
 
+function NotFoundPage() {
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '40rem', textAlign: 'center' }}>
+      <h1 style={{ fontSize: '4rem', margin: 0, color: '#666' }}>404</h1>
+      <p style={{ color: '#666', marginBottom: '1.5rem' }}>Page not found.</p>
+      <Link to="/" style={{ color: '#0066cc' }}>Back to home</Link>
+    </main>
+  )
+}
+
 function HomePage() {
   return (
     <main style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '40rem' }}>
@@ -31,6 +41,7 @@ const router = createBrowserRouter(
   [
     { path: '/', element: <HomePage /> },
     ...getPrototypeRoutes(),
+    { path: '*', element: <NotFoundPage /> },
   ],
   { basename: base.replace(/\/$/, '') || '/' }
 )
