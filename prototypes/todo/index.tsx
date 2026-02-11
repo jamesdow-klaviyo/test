@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "./components/button";
+import { Input } from "./components/input";
+import { Checkbox } from "./components/checkbox";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "./components/card";
 
 export type TodoItem = {
   id: string;
@@ -51,7 +51,6 @@ function TodoList() {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const base = import.meta.env.BASE_URL;
   const location = useLocation();
 
   return (
@@ -65,7 +64,7 @@ function TodoList() {
             Todo
           </Link>
           <Link
-            to={base}
+            to="/"
             className="ml-auto text-sm text-muted-foreground hover:text-foreground"
           >
             ← All prototypes

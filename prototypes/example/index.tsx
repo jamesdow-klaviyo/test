@@ -17,8 +17,6 @@ function Step2() {
   return <div><h2>Step 2</h2><p>Second step.</p></div>
 }
 
-const base = import.meta.env.BASE_URL
-
 export default function ExamplePrototype() {
   const location = useLocation()
   const isOverview = !location.pathname.match(/\/step\d$/)
@@ -29,7 +27,7 @@ export default function ExamplePrototype() {
         <Link to="." style={{ color: isOverview ? '#000' : '#0066cc' }}>Overview</Link>
         <Link to="step1" style={{ color: location.pathname.includes('step1') ? '#000' : '#0066cc' }}>Step 1</Link>
         <Link to="step2" style={{ color: location.pathname.includes('step2') ? '#000' : '#0066cc' }}>Step 2</Link>
-        <Link to={base} style={{ marginLeft: 'auto', color: '#666' }}>← All prototypes</Link>
+        <Link to="/" style={{ marginLeft: 'auto', color: '#666' }}>← All prototypes</Link>
       </nav>
       <Outlet />
     </div>
