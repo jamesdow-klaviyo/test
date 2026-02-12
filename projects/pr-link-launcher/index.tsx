@@ -21,7 +21,7 @@ function getPrUrls(prNumber: string): string[] {
   if (!num) return [];
   return [
     `https://www.klaviyo.com/dashboard?assetSource=pr-${num}`,
-    `http://style-guide.klaviyo-dev.com/PR/${num}?path=/docs/welcome--docs`,
+    `http://style-guide.klaviyo-dev.com/PR/${num}`,
     `https://github.com/klaviyo/fender/pull/${num}`,
   ];
 }
