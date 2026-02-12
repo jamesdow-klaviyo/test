@@ -145,10 +145,10 @@ function HomePage() {
                   <li key={name}>
                     <Link
                       to={name}
-                      className="home-card-glow group flex min-h-screen items-stretch gap-0 rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] overflow-hidden hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
+                      className="home-card-glow group flex items-stretch gap-0 rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] overflow-hidden hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
                     >
                       {preview != null ? (
-                        <span className="flex min-h-full min-w-[12rem] shrink-0 basis-64">
+                        <span className="flex min-h-full w-24 shrink-0 sm:basis-40">
                           <img
                             src={preview}
                             alt=""
@@ -156,7 +156,7 @@ function HomePage() {
                           />
                         </span>
                       ) : (
-                        <div className="min-h-full min-w-[12rem] shrink-0 basis-64 bg-white/[0.06]" aria-hidden />
+                        <div className="min-h-full w-24 shrink-0 bg-white/[0.06] sm:w-40" aria-hidden />
                       )}
                       <div className="min-w-0 flex-1 p-4 text-left">
                         <span className="block font-semibold text-white">
