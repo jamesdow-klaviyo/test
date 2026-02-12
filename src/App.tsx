@@ -90,6 +90,8 @@ function FilterBar() {
 }
 
 function BrowseLayout() {
+  const location = useLocation()
+  const atRoot = location.pathname === '/' || location.pathname === ''
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState<SortKey>('name-asc')
   const [viewMode, setViewMode] = useState<ViewMode>('tile')
@@ -101,6 +103,18 @@ function BrowseLayout() {
     <main className="home-page-bg min-h-screen text-neutral-100">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 text-center">
         <BrowseFilterContext.Provider value={value}>
+          {atRoot && (
+            <>
+              <h1 className="mb-2 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+                <span className="home-title-wrap">
+                  <span className="home-title-gradient">Ascent Spark</span>
+                </span>
+              </h1>
+              <p className="mb-10 text-neutral-400">
+                Projects and folders in <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">projects/</code>. Open a folder or a project.
+              </p>
+            </>
+          )}
           <FilterBar />
           <Outlet />
         </BrowseFilterContext.Provider>
@@ -165,15 +179,15 @@ function BrowseContent({ prefix }: { prefix: string }) {
       {visible.map((item) => {
         if (item.type === 'folder') {
           return (
-            <li key={`folder-${item.path}`} className={viewMode === 'tile' ? 'flex' : undefined}>
+            <li key={`folder-${item.path}`} className={viewMode === 'tile' ? 'flex min-h-0' : undefined}>
               <Link
                 to={prefix ? `/${item.path}` : `/${item.path}`}
-                className="home-card-glow group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
+                className="home-card-glow group flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
               >
-                <div className="flex aspect-video w-full shrink-0 items-center justify-center bg-white/[0.06] transition-colors group-hover:bg-white/[0.08]">
-                  <FolderOpen className="h-14 w-14 text-neutral-500 group-hover:text-[var(--klaviyo-burnt-sienna)]/80" strokeWidth={1.5} />
+                <div className="flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden bg-white/[0.06] transition-colors group-hover:bg-white/[0.08]">
+                  <FolderOpen className="h-14 w-14 shrink-0 text-neutral-500 group-hover:text-[var(--klaviyo-burnt-sienna)]/80" strokeWidth={1.5} />
                 </div>
-                <div className="flex min-h-[4rem] flex-1 flex-col justify-center p-4 text-left">
+                <div className="flex min-h-0 flex-1 flex-col justify-center p-4 text-left">
                   <span className="truncate font-semibold text-white">{formatSegmentTitle(item.name)}</span>
                 </div>
               </Link>
@@ -181,13 +195,13 @@ function BrowseContent({ prefix }: { prefix: string }) {
           )
         }
         const { path, name, title: projectTitle, description, preview } = item.meta
-        const linkClass = 'home-card-glow group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]'
+        const linkClass = 'home-card-glow group flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]'
         if (viewMode === 'list') {
           return (
             <li key={path}>
               <Link to={`/${path}`} className={linkClass + ' flex items-stretch gap-0 overflow-hidden'}>
                 {preview != null ? (
-                  <span className="flex min-h-full w-24 shrink-0 sm:basis-40">
+                  <span className="flex min-h-full w-24 shrink-0 overflow-hidden sm:basis-40">
                     <img src={preview} alt="" className="h-full min-h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]" />
                   </span>
                 ) : (
@@ -202,14 +216,16 @@ function BrowseContent({ prefix }: { prefix: string }) {
           )
         }
         return (
-          <li key={path} className={viewMode === 'tile' ? 'flex' : undefined}>
+          <li key={path} className={viewMode === 'tile' ? 'flex min-h-0' : undefined}>
             <Link to={`/${path}`} className={linkClass + (viewMode === 'tile' ? ' w-full' : '')}>
               {preview != null ? (
-                <img src={preview} alt="" className="aspect-video w-full shrink-0 object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]" />
+                <div className="aspect-video w-full shrink-0 overflow-hidden bg-white/[0.06]">
+                  <img src={preview} alt="" className="h-full w-full object-cover object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]" />
+                </div>
               ) : (
                 <div className="aspect-video w-full shrink-0 bg-white/[0.06]" aria-hidden />
               )}
-              <div className="flex min-h-[4rem] flex-1 flex-col justify-center p-4 text-left">
+              <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden p-4 text-left">
                 <span className="truncate font-semibold text-white">{projectTitle ?? name}</span>
               </div>
             </Link>
@@ -249,19 +265,7 @@ function Breadcrumb({ prefix }: { prefix: string }) {
 }
 
 function HomePage() {
-  return (
-    <>
-      <h1 className="mb-2 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-        <span className="home-title-wrap">
-          <span className="home-title-gradient">Ascent Spark</span>
-        </span>
-      </h1>
-      <p className="mb-10 text-neutral-400">
-        Projects and folders in <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">projects/</code>. Open a folder or a project.
-      </p>
-      <BrowseContent prefix="" />
-    </>
-  )
+  return <BrowseContent prefix="" />
 }
 
 function FolderPage() {
