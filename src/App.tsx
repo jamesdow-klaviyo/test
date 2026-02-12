@@ -178,11 +178,11 @@ function BrowseContent({ prefix }: { prefix: string }) {
 
   const tileThumbHeight = 'h-36'
   const listContent = (
-    <ul className={viewMode === 'list' ? 'flex flex-col gap-2' : 'grid gap-6 sm:grid-cols-2 lg:grid-cols-3'}>
+    <ul className={viewMode === 'list' ? 'flex flex-col gap-2 isolate' : 'grid gap-6 sm:grid-cols-2 lg:grid-cols-3'}>
       {visible.map((item) => {
         if (item.type === 'folder') {
           return (
-            <li key={`folder-${item.path}`} className={viewMode === 'tile' ? 'flex' : undefined}>
+            <li key={`folder-${item.path}`} className={viewMode === 'tile' ? 'flex' : viewMode === 'list' ? 'relative overflow-hidden rounded-xl' : undefined}>
               <Link
                 to={prefix ? `/${item.path}` : `/${item.path}`}
                 className="home-card-glow group flex h-full w-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
@@ -201,16 +201,16 @@ function BrowseContent({ prefix }: { prefix: string }) {
         const linkClass = 'home-card-glow group flex h-full w-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]'
         if (viewMode === 'list') {
           return (
-            <li key={path}>
+            <li key={path} className="relative overflow-hidden rounded-xl">
               <Link to={`/${path}`} className={linkClass + ' flex items-stretch gap-0 overflow-hidden'}>
                 {preview != null ? (
-                  <span className="flex min-h-full w-24 shrink-0 overflow-hidden sm:basis-40">
-                    <img src={preview} alt="" className="h-full min-h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]" />
+                  <span className="flex min-h-full w-24 shrink-0 overflow-hidden sm:basis-40 bg-white/[0.06]">
+                    <img src={preview} alt="" className="h-full min-h-full w-full object-cover object-left transition-transform duration-300 ease-out group-hover:scale-[1.02]" />
                   </span>
                 ) : (
-                  <div className="min-h-full w-24 shrink-0 bg-white/[0.06] sm:w-40" aria-hidden />
+                  <div className="min-h-full w-24 shrink-0 overflow-hidden bg-white/[0.06] sm:w-40" aria-hidden />
                 )}
-                <div className="min-w-0 flex-1 p-4 text-left">
+                <div className="min-w-0 flex-1 p-4 text-left overflow-hidden">
                   <span className="block font-semibold text-white">{projectTitle ?? name}</span>
                   {description != null && <p className="mt-0.5 truncate text-sm text-neutral-400">{description}</p>}
                 </div>
@@ -309,6 +309,7 @@ function NotFoundPage() {
 
 const router = createBrowserRouter(
   [
+    ...getProjectRoutes(),
     {
       path: '/',
       element: <BrowseLayout />,
@@ -317,7 +318,6 @@ const router = createBrowserRouter(
         { path: '*', element: <FolderPage /> },
       ],
     },
-    ...getProjectRoutes(),
     { path: '*', element: <NotFoundPage /> },
   ],
   { basename: base.replace(/\/$/, '') || '/' }
