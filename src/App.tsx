@@ -75,17 +75,17 @@ function HomePage() {
   }, [hasMore, loadMore, visible.length])
 
   return (
-    <main className="home-page-bg min-h-screen text-slate-100">
+    <main className="home-page-bg min-h-screen text-neutral-100">
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         <h1 className="home-title-glow mb-2 text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
           Projects
         </h1>
-        <p className="mb-10 text-slate-400">
-          Add a folder under <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-slate-300">projects/</code> with an <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-slate-300">index.tsx</code> to add one.
+        <p className="mb-10 text-neutral-400">
+          Add a folder under <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">projects/</code> with an <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">index.tsx</code> to add one.
         </p>
 
         {projectMeta.length === 0 ? (
-          <p className="rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-6 text-slate-400">
+          <p className="rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-6 text-neutral-400">
             No projects yet. Add <code className="font-mono">projects/my-name/index.tsx</code> (export default + optional <code className="font-mono">routes</code>).
           </p>
         ) : (
@@ -96,13 +96,13 @@ function HomePage() {
                 placeholder="Search projects…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-10 flex-1 min-w-[200px] rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-slate-100 placeholder-slate-500 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
+                className="h-10 flex-1 min-w-[200px] rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 placeholder-neutral-500 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Search projects"
               />
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
-                className="h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-slate-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
+                className="h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Sort by"
               >
                 <option value="title-asc">Title A–Z</option>
@@ -117,7 +117,7 @@ function HomePage() {
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                     viewMode === 'list'
                       ? 'bg-[var(--klaviyo-burnt-sienna)] text-white'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-neutral-400 hover:text-neutral-200'
                   }`}
                   aria-label="List view"
                   aria-pressed={viewMode === 'list'}
@@ -130,7 +130,7 @@ function HomePage() {
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                     viewMode === 'tile'
                       ? 'bg-[var(--klaviyo-burnt-sienna)] text-white'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-neutral-400 hover:text-neutral-200'
                   }`}
                   aria-label="Tile view"
                   aria-pressed={viewMode === 'tile'}
@@ -141,7 +141,7 @@ function HomePage() {
             </div>
 
             {filtered.length === 0 ? (
-              <p className="text-slate-500">No projects match your search.</p>
+              <p className="text-neutral-500">No projects match your search.</p>
             ) : viewMode === 'list' ? (
               <ul className="flex flex-col gap-2">
                 {visible.map(({ name, title, description, preview }) => (
@@ -164,7 +164,7 @@ function HomePage() {
                           {title ?? name}
                         </span>
                         {description != null && (
-                          <p className="mt-0.5 truncate text-sm text-slate-400">
+                          <p className="mt-0.5 truncate text-sm text-neutral-400">
                             {description}
                           </p>
                         )}
@@ -195,7 +195,7 @@ function HomePage() {
                           {title ?? name}
                         </span>
                         {description != null && (
-                          <p className="mt-1 line-clamp-2 text-sm text-slate-400">
+                          <p className="mt-1 line-clamp-2 text-sm text-neutral-400">
                             {description}
                           </p>
                         )}
@@ -220,7 +220,7 @@ function NotFoundPage() {
       <h1 className="home-title-glow mb-4 text-6xl font-bold text-white sm:text-8xl">
         404
       </h1>
-      <p className="mb-6 text-slate-400">Page not found.</p>
+      <p className="mb-6 text-neutral-400">Page not found.</p>
       <Link
         to="/"
         className="rounded-lg bg-[var(--klaviyo-burnt-sienna)] px-4 py-2 font-medium text-white transition-colors hover:opacity-90"
