@@ -8,8 +8,22 @@ body {
   margin: 0;
 }
 
+/* Klaviyo-style dark theme */
+:root {
+  --klaviyo-burnt-sienna: #ef6351;
+  --klaviyo-green-spring: #1db954;
+  --klaviyo-shark: #1a1d21;
+  --klaviyo-bg: #0c0c0c;
+  --klaviyo-bg-elevated: #141414;
+}
+
+.home-page-bg {
+  background: #0c0c0c;
+  background-image: linear-gradient(180deg, #0c0c0c 0%, #0f0f0f 50%, #0c0c0c 100%);
+}
+
 .home-title-glow {
   text-shadow:
-    0 0 24px rgba(56, 189, 248, 0.25),
-    0 0 48px rgba(56, 189, 248, 0.15);
+    0 0 20px rgba(239, 99, 81, 0.2),
+    0 0 40px rgba(239, 99, 81, 0.1);
 }

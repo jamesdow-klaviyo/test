@@ -75,17 +75,17 @@ function HomePage() {
   }, [hasMore, loadMore, visible.length])
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0a0c10] via-slate-950/50 to-[#07090d] text-slate-100">
+    <main className="home-page-bg min-h-screen text-slate-100">
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         <h1 className="home-title-glow mb-2 text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
           Projects
         </h1>
         <p className="mb-10 text-slate-400">
-          Add a folder under <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-sm">projects/</code> with an <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-sm">index.tsx</code> to add one.
+          Add a folder under <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-slate-300">projects/</code> with an <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-slate-300">index.tsx</code> to add one.
         </p>
 
         {projectMeta.length === 0 ? (
-          <p className="rounded-xl border border-white/10 bg-white/5 p-6 text-slate-400">
+          <p className="rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-6 text-slate-400">
             No projects yet. Add <code className="font-mono">projects/my-name/index.tsx</code> (export default + optional <code className="font-mono">routes</code>).
           </p>
         ) : (
@@ -96,13 +96,13 @@ function HomePage() {
                 placeholder="Search projects…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="h-10 flex-1 min-w-[200px] rounded-lg border border-white/15 bg-white/5 px-3 text-slate-100 placeholder-slate-500 focus:border-sky-500/50 focus:outline-none focus:ring-1 focus:ring-sky-500/40"
+                className="h-10 flex-1 min-w-[200px] rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-slate-100 placeholder-slate-500 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Search projects"
               />
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
-                className="h-10 rounded-lg border border-white/15 bg-white/5 px-3 text-slate-100 focus:border-sky-500/50 focus:outline-none focus:ring-1 focus:ring-sky-500/40"
+                className="h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-slate-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Sort by"
               >
                 <option value="title-asc">Title A–Z</option>
@@ -110,13 +110,13 @@ function HomePage() {
                 <option value="name-asc">Name A–Z</option>
                 <option value="name-desc">Name Z–A</option>
               </select>
-              <div className="flex rounded-lg border border-white/15 bg-white/5 p-0.5">
+              <div className="flex rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-0.5">
                 <button
                   type="button"
                   onClick={() => setViewMode('list')}
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                     viewMode === 'list'
-                      ? 'bg-slate-600 text-white'
+                      ? 'bg-[var(--klaviyo-burnt-sienna)] text-white'
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                   aria-label="List view"
@@ -129,7 +129,7 @@ function HomePage() {
                   onClick={() => setViewMode('tile')}
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                     viewMode === 'tile'
-                      ? 'bg-slate-600 text-white'
+                      ? 'bg-[var(--klaviyo-burnt-sienna)] text-white'
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                   aria-label="Tile view"
@@ -148,7 +148,7 @@ function HomePage() {
                   <li key={name}>
                     <Link
                       to={name}
-                      className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-white/20 hover:bg-white/10"
+                      className="flex items-center gap-4 rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-4 transition-colors hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
                     >
                       {preview != null ? (
                         <img
@@ -157,7 +157,7 @@ function HomePage() {
                           className="h-14 w-24 shrink-0 rounded-lg object-cover"
                         />
                       ) : (
-                        <div className="h-14 w-24 shrink-0 rounded-lg bg-white/10" aria-hidden />
+                        <div className="h-14 w-24 shrink-0 rounded-lg bg-white/[0.06]" aria-hidden />
                       )}
                       <div className="min-w-0 flex-1">
                         <span className="block font-semibold text-white">
@@ -179,7 +179,7 @@ function HomePage() {
                   <li key={name}>
                     <Link
                       to={name}
-                      className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-colors hover:border-white/20 hover:bg-white/10"
+                      className="group flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] transition-colors hover:border-[var(--klaviyo-burnt-sienna)]/30 hover:bg-white/[0.06]"
                     >
                       {preview != null ? (
                         <img
@@ -188,7 +188,7 @@ function HomePage() {
                           className="aspect-video w-full object-cover transition-transform group-hover:scale-[1.02]"
                         />
                       ) : (
-                        <div className="aspect-video w-full bg-gradient-to-br from-white/10 to-white/5" aria-hidden />
+                        <div className="aspect-video w-full bg-white/[0.06]" aria-hidden />
                       )}
                       <div className="flex flex-1 flex-col p-4">
                         <span className="font-semibold text-white">
@@ -216,14 +216,14 @@ function HomePage() {
 
 function NotFoundPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#0a0c10] via-slate-950/50 to-[#07090d] px-4 text-center">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-[var(--klaviyo-bg)] px-4 text-center">
       <h1 className="home-title-glow mb-4 text-6xl font-bold text-white sm:text-8xl">
         404
       </h1>
       <p className="mb-6 text-slate-400">Page not found.</p>
       <Link
         to="/"
-        className="rounded-lg bg-slate-600 px-4 py-2 font-medium text-white transition-colors hover:bg-slate-500"
+        className="rounded-lg bg-[var(--klaviyo-burnt-sienna)] px-4 py-2 font-medium text-white transition-colors hover:opacity-90"
       >
         Back to home
       </Link>
