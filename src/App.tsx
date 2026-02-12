@@ -6,6 +6,7 @@ import {
   categorySlugs,
   getProjectsByCategory,
   formatCategoryTitle,
+  type ProjectMeta,
 } from './registry'
 
 const base = import.meta.env.BASE_URL
