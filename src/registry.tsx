@@ -16,7 +16,7 @@ const previewGlob = import.meta.glob<string | { default: string }>(
   { eager: true, query: '?url', import: 'default' }
 )
 
-export const UNCATEGORIZED_SLUG = 'uncategorized'
+export const UNCATEGORIZED_SLUG = 'examples'
 
 type ParsedProject = { category: string | null; name: string; path: string }
 
@@ -89,7 +89,7 @@ export function getProjectsByCategory(categorySlug: string): ProjectMeta[] {
 }
 
 export function formatCategoryTitle(slug: string): string {
-  if (slug === UNCATEGORIZED_SLUG) return 'Uncategorized'
+  if (slug === UNCATEGORIZED_SLUG) return 'Examples'
   return slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
