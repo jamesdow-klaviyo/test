@@ -76,9 +76,11 @@ function HomePage() {
 
   return (
     <main className="home-page-bg min-h-screen text-neutral-100">
-      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-        <h1 className="home-title-glow mb-2 text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
-          Projects
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 text-center">
+        <h1 className="mb-2 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+          <span className="home-title-wrap">
+            <span className="home-title-gradient">Projects</span>
+          </span>
         </h1>
         <p className="mb-10 text-neutral-400">
           Add a folder under <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">projects/</code> with an <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">index.tsx</code> to add one.
@@ -90,7 +92,7 @@ function HomePage() {
           </p>
         ) : (
           <>
-            <div className="mb-8 flex flex-wrap items-center gap-3">
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
               <input
                 type="search"
                 placeholder="Search projects…"
@@ -104,11 +106,12 @@ function HomePage() {
                 onChange={(e) => setSort(e.target.value as SortKey)}
                 className="home-select h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Sort by"
+                title="Display name = label each project exports. Folder name = URL path (e.g. /todo)."
               >
-                <option value="title-asc">Title A–Z</option>
-                <option value="title-desc">Title Z–A</option>
-                <option value="name-asc">Name A–Z</option>
-                <option value="name-desc">Name Z–A</option>
+                <option value="title-asc">Display name (A–Z)</option>
+                <option value="title-desc">Display name (Z–A)</option>
+                <option value="name-asc">Folder name (A–Z)</option>
+                <option value="name-desc">Folder name (Z–A)</option>
               </select>
               <div className="flex rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-0.5">
                 <button
