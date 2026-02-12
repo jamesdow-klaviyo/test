@@ -103,8 +103,8 @@ function HomePage() {
                 className="home-select h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
                 aria-label="Sort by project name"
               >
-                <option value="name-asc">Project name (A–Z)</option>
-                <option value="name-desc">Project name (Z–A)</option>
+                <option value="name-asc">Name (A–Z)</option>
+                <option value="name-desc">Name (Z–A)</option>
               </select>
               <div className="home-view-toggle-wrap relative flex rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-0.5">
                 <span
