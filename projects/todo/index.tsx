@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "./components/card";
 
-export const title = "Todo aqwer";
+export const title = "To Do";
 export const description =
   "Basic todo template — add, complete, and remove tasks.";
 
