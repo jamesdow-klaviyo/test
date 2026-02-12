@@ -115,7 +115,9 @@ function BrowseLayout() {
             Projects and folders in <code className="rounded bg-[var(--klaviyo-bg-elevated)] px-1.5 py-0.5 font-mono text-sm text-neutral-300">projects/</code>. Open a folder or a project.
           </p>
           <FilterBar />
-          {prefix !== '' && <Breadcrumb prefix={prefix} />}
+          <div className="mb-6 min-h-5">
+            {prefix !== '' && <Breadcrumb prefix={prefix} />}
+          </div>
           <Outlet />
         </BrowseFilterContext.Provider>
       </div>
@@ -247,7 +249,7 @@ function BrowseContent({ prefix }: { prefix: string }) {
 function Breadcrumb({ prefix }: { prefix: string }) {
   const breadcrumb = useMemo(() => getBreadcrumb(prefix), [prefix])
   return (
-    <nav className="mb-6 flex flex-wrap items-center justify-start gap-1.5 text-sm text-neutral-400" aria-label="Breadcrumb">
+    <nav className="flex flex-wrap items-center justify-start gap-1.5 text-sm text-neutral-400" aria-label="Breadcrumb">
       {breadcrumb.map((item, i) => (
         <span key={item.path} className="flex items-center gap-1.5">
           {i > 0 && <ChevronRight className="h-4 w-4 rotate-180 shrink-0" aria-hidden />}
