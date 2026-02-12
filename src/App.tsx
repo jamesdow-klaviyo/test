@@ -187,7 +187,7 @@ function BrowseContent({ prefix }: { prefix: string }) {
                 <div className="flex aspect-video w-full shrink-0 items-center justify-center overflow-hidden bg-white/[0.06] transition-colors group-hover:bg-white/[0.08]">
                   <FolderOpen className="h-14 w-14 shrink-0 text-neutral-500 group-hover:text-[var(--klaviyo-burnt-sienna)]/80" strokeWidth={1.5} />
                 </div>
-                <div className="flex min-h-0 flex-1 flex-col justify-center p-4 text-left">
+                <div className="flex min-h-[4rem] flex-1 flex-col justify-center p-4 text-left">
                   <span className="truncate font-semibold text-white">{formatSegmentTitle(item.name)}</span>
                 </div>
               </Link>
@@ -225,7 +225,7 @@ function BrowseContent({ prefix }: { prefix: string }) {
               ) : (
                 <div className="aspect-video w-full shrink-0 bg-white/[0.06]" aria-hidden />
               )}
-              <div className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden p-4 text-left">
+              <div className="flex min-h-[4rem] flex-1 flex-col justify-center overflow-hidden p-4 text-left">
                 <span className="truncate font-semibold text-white">{projectTitle ?? name}</span>
               </div>
             </Link>
