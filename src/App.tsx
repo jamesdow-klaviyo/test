@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL
 const INITIAL_VISIBLE = 12
 const LOAD_MORE = 12
 
-type SortKey = 'name-asc' | 'name-desc' | 'title-asc' | 'title-desc'
+type SortKey = 'name-asc' | 'name-desc'
 type ViewMode = 'list' | 'tile'
 
 function filterAndSort(
@@ -24,14 +24,9 @@ function filterAndSort(
           (p.description ?? '').toLowerCase().includes(q)
       )
     : [...list]
-
-  const [field, asc] = sort.startsWith('name')
-    ? ['name' as const, sort === 'name-asc']
-    : ['title' as const, sort === 'title-asc']
+  const asc = sort === 'name-asc'
   out.sort((a, b) => {
-    const aVal = (field === 'name' ? a.name : a.title ?? a.name) ?? ''
-    const bVal = (field === 'name' ? b.name : b.title ?? b.name) ?? ''
-    const cmp = aVal.localeCompare(bVal, undefined, { sensitivity: 'base' })
+    const cmp = (a.name ?? '').localeCompare(b.name ?? '', undefined, { sensitivity: 'base' })
     return asc ? cmp : -cmp
   })
   return out
@@ -39,7 +34,7 @@ function filterAndSort(
 
 function HomePage() {
   const [search, setSearch] = useState('')
-  const [sort, setSort] = useState<SortKey>('title-asc')
+  const [sort, setSort] = useState<SortKey>('name-asc')
   const [viewMode, setViewMode] = useState<ViewMode>('tile')
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE)
   const sentinelRef = useRef<HTMLDivElement>(null)
@@ -78,7 +73,7 @@ function HomePage() {
   return (
     <main className="home-page-bg min-h-screen text-neutral-100">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 text-center">
-        <h1 className="mb-2 text-5xl font-bold tracking-wider sm:text-6xl md:text-7xl">
+        <h1 className="mb-2 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
           <span className="home-title-wrap">
             <span className="home-title-gradient">PROJECTS</span>
           </span>
@@ -106,13 +101,10 @@ function HomePage() {
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
                 className="home-select h-10 rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
-                aria-label="Sort by"
-                title="Display name = label each project exports. Folder name = URL path (e.g. /todo)."
+                aria-label="Sort by project name"
               >
-                <option value="title-asc">Display name (A–Z)</option>
-                <option value="title-desc">Display name (Z–A)</option>
-                <option value="name-asc">Folder name (A–Z)</option>
-                <option value="name-desc">Folder name (Z–A)</option>
+                <option value="name-asc">Project name (A–Z)</option>
+                <option value="name-desc">Project name (Z–A)</option>
               </select>
               <div className="home-view-toggle-wrap relative flex rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-0.5">
                 <span
