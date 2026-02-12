@@ -8,55 +8,93 @@ type ProjectModule = {
   description?: string
 }
 
-const modules = import.meta.glob<ProjectModule>('../projects/*/index.tsx', { eager: true })
+// Projects at any depth: projects/x/index.tsx (uncategorized) or projects/cat/proj/index.tsx (categorized)
+const modules = import.meta.glob<ProjectModule>('../projects/**/index.tsx', { eager: true })
 
 const previewGlob = import.meta.glob<string | { default: string }>(
-  '../projects/*/preview.{png,jpg,jpeg,webp}',
+  '../projects/**/preview.{png,jpg,jpeg,webp}',
   { eager: true, query: '?url', import: 'default' }
 )
 
-export const projectNames = Object.keys(modules)
-  .map((k) => k.replace('../projects/', '').replace('/index.tsx', ''))
-  .sort()
+export const UNCATEGORIZED_SLUG = 'uncategorized'
 
-function getPreviewUrl(projectName: string): string | undefined {
+type ParsedProject = { category: string | null; name: string; path: string }
+
+function parseProjectKey(key: string): ParsedProject | null {
+  const normalized = key.replace('../projects/', '').replace('/index.tsx', '')
+  const parts = normalized.split('/')
+  if (parts.length === 1) {
+    return { category: null, name: parts[0], path: parts[0] }
+  }
+  if (parts.length === 2) {
+    return { category: parts[0], name: parts[1], path: `${parts[0]}/${parts[1]}` }
+  }
+  // Deeper nesting: treat first segment as category, rest as project path (e.g. cat/a/b → category cat, name a/b)
+  const category = parts[0]
+  const name = parts.slice(1).join('/')
+  return { category, name, path: `${category}/${name}` }
+}
+
+const parsedProjects = Object.keys(modules)
+  .map((k) => parseProjectKey(k))
+  .filter((p): p is ParsedProject => p != null)
+  .sort((a, b) => a.path.localeCompare(b.path))
+
+export const projectNames: string[] = parsedProjects.map((p) => p.path)
+
+/** Unique category slugs for the dashboard. Includes UNCATEGORIZED_SLUG for top-level projects. */
+export const categorySlugs: string[] = (() => {
+  const cats = new Set<string>()
+  for (const p of parsedProjects) {
+    cats.add(p.category ?? UNCATEGORIZED_SLUG)
+  }
+  return [...cats].sort((a, b) => (a === UNCATEGORIZED_SLUG ? 1 : b === UNCATEGORIZED_SLUG ? -1 : a.localeCompare(b)))
+})()
+
+function getPreviewUrl(path: string): string | undefined {
   const key = Object.keys(previewGlob).find(
-    (k) => k.startsWith(`../projects/${projectName}/preview.`)
+    (k) => k.replace('../projects/', '').replace(/\/preview\.(png|jpg|jpeg|webp)$/, '') === path
   )
   if (!key) return undefined
   const v = previewGlob[key]
-  return typeof v === 'string' ? v : v?.default
+  return typeof v === 'string' ? v : (v as { default?: string })?.default
 }
 
 export type ProjectMeta = {
   name: string
+  path: string
+  category: string | null
+  categorySlug: string
   title?: string
   description?: string
   preview?: string
 }
 
-export const projectMeta: ProjectMeta[] = projectNames.map((name) => {
-  const key = `../projects/${name}/index.tsx`
+export const projectMeta: ProjectMeta[] = parsedProjects.map((p) => {
+  const key = `../projects/${p.path}/index.tsx`
   const mod = modules[key] as ProjectModule | undefined
   return {
-    name,
+    name: p.name,
+    path: p.path,
+    category: p.category,
+    categorySlug: p.category ?? UNCATEGORIZED_SLUG,
     title: mod?.title,
     description: mod?.description,
-    preview: getPreviewUrl(name),
+    preview: getPreviewUrl(p.path),
   }
 })
 
 export function getProjectRoutes(): RouteObject[] {
   const list: RouteObject[] = []
 
-  for (const name of projectNames) {
-    const key = `../projects/${name}/index.tsx`
+  for (const p of parsedProjects) {
+    const key = `../projects/${p.path}/index.tsx`
     const mod = modules[key] as ProjectModule | undefined
     if (!mod?.default) continue
     const Layout = mod.default
     const childRoutes = mod.routes ?? [{ path: '/', Component: () => null }]
     list.push({
-      path: name,
+      path: p.path,
       element: <Layout />,
       children: childRoutes.map((r) => {
         const isIndex = r.path === '/' || r.path === ''
