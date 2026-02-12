@@ -116,7 +116,7 @@ function BrowseLayout() {
           </p>
           <FilterBar />
           <div className="mb-6 min-h-5">
-            {prefix !== '' && <Breadcrumb prefix={prefix} />}
+            <Breadcrumb prefix={prefix} />
           </div>
           <Outlet />
         </BrowseFilterContext.Provider>
@@ -248,6 +248,7 @@ function BrowseContent({ prefix }: { prefix: string }) {
 
 function Breadcrumb({ prefix }: { prefix: string }) {
   const breadcrumb = useMemo(() => getBreadcrumb(prefix), [prefix])
+  const atRoot = breadcrumb.length <= 1
   return (
     <nav className="flex flex-wrap items-center justify-start gap-1.5 text-sm text-neutral-400" aria-label="Breadcrumb">
       {breadcrumb.map((item, i) => (
@@ -255,15 +256,23 @@ function Breadcrumb({ prefix }: { prefix: string }) {
           {i > 0 && <ChevronRight className="h-4 w-4 rotate-180 shrink-0" aria-hidden />}
           {i === breadcrumb.length - 1 ? (
             item.path === '' ? (
-              <span className="inline-flex text-white" aria-label="Home">
-                <Home className="h-4 w-4 shrink-0" strokeWidth={2} />
+              <span className="inline-flex items-center gap-1.5 text-white">
+                <Home className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+                {atRoot && <span>Home</span>}
               </span>
             ) : (
               <span className="text-white">{item.title}</span>
             )
           ) : (
-            <Link to={item.path === '' ? '/' : `/${item.path}`} className="hover:text-neutral-200 inline-flex items-center" aria-label={item.path === '' ? 'Home' : undefined}>
-              {item.path === '' ? <Home className="h-4 w-4 shrink-0" strokeWidth={2} /> : item.title}
+            <Link to={item.path === '' ? '/' : `/${item.path}`} className="hover:text-neutral-200 inline-flex items-center gap-1.5" aria-label={item.path === '' ? 'Home' : undefined}>
+              {item.path === '' ? (
+                <>
+                  <Home className="h-4 w-4 shrink-0" strokeWidth={2} />
+                  {atRoot && <span>Home</span>}
+                </>
+              ) : (
+                item.title
+              )}
             </Link>
           )}
         </span>
