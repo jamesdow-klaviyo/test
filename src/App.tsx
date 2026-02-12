@@ -77,9 +77,9 @@ function HomePage() {
   return (
     <main className="home-page-bg min-h-screen text-neutral-100">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 text-center">
-        <h1 className="mb-2 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+        <h1 className="mb-2 text-5xl font-bold tracking-wider sm:text-6xl md:text-7xl">
           <span className="home-title-wrap">
-            <span className="home-title-gradient">Projects</span>
+            <span className="home-title-gradient">PROJECTS</span>
           </span>
         </h1>
         <p className="mb-10 text-neutral-400">
