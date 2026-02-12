@@ -1,7 +1,16 @@
+@import "tailwindcss";
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+}
+
+.home-title-glow {
+  text-shadow:
+    0 0 20px rgba(139, 92, 246, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.4),
+    0 0 60px rgba(99, 102, 241, 0.3);
 }
