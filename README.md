@@ -14,10 +14,7 @@ A lightweight way to build and share UI prototypes. You get a homepage that list
 
    ```bash
    yarn install
-   yarn dev:all
    ```
-
-4. **Open the link** the terminal shows (usually [http://localhost:5173](http://localhost:5173)). Your prototype gallery will open in the browser.
 
 ---
 
@@ -25,7 +22,13 @@ A lightweight way to build and share UI prototypes. You get a homepage that list
 
 To view the same prototype on your phone, tablet, or another computer on the same Wi‑Fi:
 
-1. Start the dev server as usual (`yarn dev` or `yarn dev:all`). The terminal will show both a local address (e.g. `http://localhost:5173`) and a network address (e.g. `http://192.168.1.5:5173`).
+1. Start the dev server as usual
+
+```
+yarn dev:all
+```
+
+2. The terminal will show both a local address (e.g. `http://localhost:5173`) and a network address—the numbers in the network one depend on your Wi‑Fi, so yours may look different (e.g. `http://192.168.1.5:5173`).
 2. Type the **network** address into the browser on your phone or other device. You’ll see the same prototype.
 
 ---
