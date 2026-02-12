@@ -84,6 +84,23 @@ export const projectMeta: ProjectMeta[] = parsedProjects.map((p) => {
   }
 })
 
+export function getProjectsByCategory(categorySlug: string): ProjectMeta[] {
+  return projectMeta.filter((p) => p.categorySlug === categorySlug)
+}
+
+export function formatCategoryTitle(slug: string): string {
+  if (slug === UNCATEGORIZED_SLUG) return 'Uncategorized'
+  return slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+}
+
+export function isCategorySlug(slug: string): boolean {
+  return categorySlugs.includes(slug) && slug !== UNCATEGORIZED_SLUG
+}
+
+export function getProjectByPath(path: string): ProjectMeta | undefined {
+  return projectMeta.find((p) => p.path === path)
+}
+
 export function getProjectRoutes(): RouteObject[] {
   const list: RouteObject[] = []
 

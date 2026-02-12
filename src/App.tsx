@@ -1,7 +1,15 @@
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Link, RouterProvider, useParams } from 'react-router-dom'
 import { useMemo, useState, useRef, useEffect, useCallback } from 'react'
-import { List, LayoutGrid } from 'lucide-react'
-import { getProjectRoutes, projectMeta, type ProjectMeta } from './registry'
+import { List, LayoutGrid, FolderOpen, ChevronRight } from 'lucide-react'
+import {
+  getProjectRoutes,
+  projectMeta,
+  categorySlugs,
+  getProjectsByCategory,
+  formatCategoryTitle,
+  UNCATEGORIZED_SLUG,
+  type ProjectMeta,
+} from './registry'
 
 const base = import.meta.env.BASE_URL
 const INITIAL_VISIBLE = 12
