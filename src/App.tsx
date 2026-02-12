@@ -1,6 +1,6 @@
 import { createBrowserRouter, Link, RouterProvider, useParams, Outlet, useLocation } from 'react-router-dom'
 import { useMemo, useState, useRef, useEffect, useCallback, createContext, useContext } from 'react'
-import { List, LayoutGrid, FolderOpen, ChevronRight, ChevronDown, Home } from 'lucide-react'
+import { List, LayoutGrid, FolderOpen, ChevronRight, Home, ArrowUpDown } from 'lucide-react'
 import {
   getProjectRoutes,
   getChildProjects,
@@ -47,17 +47,17 @@ function FilterBar() {
         className="home-input-glow h-10 flex-1 min-w-[200px] rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] px-3 text-neutral-100 placeholder-neutral-500 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
         aria-label="Search"
       />
-      <div className="relative flex items-center">
+      <div className="relative flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] focus-within:border-[var(--klaviyo-burnt-sienna)] focus-within:ring-1 focus-within:ring-[var(--klaviyo-burnt-sienna)]/50">
+        <ArrowUpDown className="pointer-events-none h-4 w-4 shrink-0 text-neutral-400" strokeWidth={2} aria-hidden />
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as SortKey)}
-          className="home-select h-10 appearance-none rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] pl-3 pr-9 text-neutral-100 focus:border-[var(--klaviyo-burnt-sienna)] focus:outline-none focus:ring-1 focus:ring-[var(--klaviyo-burnt-sienna)]/50"
+          className="absolute inset-0 cursor-pointer appearance-none rounded-lg border-0 bg-transparent text-transparent [color-scheme:dark]"
           aria-label="Sort by name"
         >
           <option value="name-asc">Name (A–Z)</option>
           <option value="name-desc">Name (Z–A)</option>
         </select>
-        <ChevronDown className="pointer-events-none absolute right-2.5 h-4 w-4 shrink-0 text-neutral-400" strokeWidth={2} aria-hidden />
       </div>
       <div className="home-view-toggle-wrap relative flex rounded-lg border border-white/[0.08] bg-[var(--klaviyo-bg-elevated)] p-0.5">
         <span
