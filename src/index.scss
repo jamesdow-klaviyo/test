@@ -29,17 +29,16 @@ body {
   position: relative;
 }
 
-/* Ambient "screen" glow behind content */
+/* Very subtle ambient glow behind content */
 .home-page-bg::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    ellipse 80% 50% at 50% -10%,
-    rgba(239, 99, 81, 0.08) 0%,
-    rgba(239, 99, 81, 0.03) 40%,
-    transparent 70%
+    ellipse 70% 40% at 50% -5%,
+    rgba(239, 99, 81, 0.04) 0%,
+    transparent 55%
   );
   z-index: 0;
 }
@@ -53,27 +52,22 @@ body {
   color: inherit;
 }
 
-/* Stronger spaceship-style title glow */
+/* Subtle title glow */
 .home-title-glow {
   text-shadow:
-    0 0 20px rgba(239, 99, 81, 0.5),
-    0 0 40px rgba(239, 99, 81, 0.35),
-    0 0 60px rgba(239, 99, 81, 0.25),
-    0 0 80px rgba(239, 99, 81, 0.15);
+    0 0 24px rgba(239, 99, 81, 0.2),
+    0 0 48px rgba(239, 99, 81, 0.08);
 }
 
-/* Glowing cards / panels on hover */
+/* Subtle card glow on hover */
 .home-card-glow {
   transition: box-shadow 0.2s ease;
 }
 .home-card-glow:hover {
-  box-shadow:
-    0 0 20px rgba(239, 99, 81, 0.15),
-    0 0 40px rgba(239, 99, 81, 0.08),
-    inset 0 0 0 1px rgba(239, 99, 81, 0.1);
+  box-shadow: 0 0 24px rgba(239, 99, 81, 0.06);
 }
 
-/* Subtle glow on focused inputs */
+/* Very subtle glow on focused input */
 .home-input-glow:focus {
-  box-shadow: 0 0 0 1px var(--klaviyo-burnt-sienna), 0 0 20px rgba(239, 99, 81, 0.2);
+  box-shadow: 0 0 0 1px var(--klaviyo-burnt-sienna), 0 0 16px rgba(239, 99, 81, 0.08);
 }
