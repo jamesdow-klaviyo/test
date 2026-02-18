@@ -160,6 +160,18 @@ export default function Inbox() {
           </div>
         </div>
 
+        <div className="gmail-tabs">
+          <button type="button" className="gmail-tab active">
+            Primary
+          </button>
+          <button type="button" className="gmail-tab">
+            Social
+          </button>
+          <button type="button" className="gmail-tab">
+            Promotions
+          </button>
+        </div>
+
         <div className="gmail-list">
           {visibleEmails.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
