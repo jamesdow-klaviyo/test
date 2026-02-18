@@ -1,8 +1,24 @@
 /// <reference types="node" />
 import path from 'path'
+import { copyFileSync } from 'fs'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+
+/** GitHub Pages (and similar): copy index.html → 404.html so unknown paths load the SPA. */
+function ghPages404() {
+  let outDir: string
+  return {
+    name: 'gh-pages-404',
+    apply: 'build',
+    configResolved(config) {
+      outDir = path.resolve(config.root, config.build.outDir)
+    },
+    closeBundle() {
+      copyFileSync(path.join(outDir, 'index.html'), path.join(outDir, '404.html'))
+    },
+  }
+}
 
 /** SPA fallback: serve index.html for client routes so direct URLs and refresh work. */
 function spaFallback() {
@@ -39,7 +55,7 @@ function spaFallback() {
 export default defineConfig({
   appType: 'spa',
   base: process.env.BASE_PATH || '/',
-  plugins: [spaFallback(), react(), tailwindcss()],
+  plugins: [ghPages404(), spaFallback(), react(), tailwindcss()],
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
