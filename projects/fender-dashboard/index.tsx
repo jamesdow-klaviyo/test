@@ -1,6 +1,5 @@
 import "./tailwind.css";
 import "./index.scss";
-import { Link } from "react-router-dom";
 import {
   Target,
   BarChart3,
@@ -9,6 +8,7 @@ import {
   MessageSquare,
   Bell,
 } from "lucide-react";
+import { AppChrome } from "./components/chrome/AppChrome";
 
 export const title = "Fender dashboard";
 export const description =
@@ -58,21 +58,13 @@ export default function FenderDashboard() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <AppChrome>
       <div
-        className="mx-auto px-4 py-6 sm:px-6"
-        style={{ maxWidth: MAX_WIDTH, minWidth: MIN_WIDTH }}
+        className="min-h-full bg-background text-foreground"
+        style={{ maxWidth: MAX_WIDTH, minWidth: MIN_WIDTH, margin: "0 auto" }}
       >
-        <nav className="mb-6 flex items-center border-b border-border pb-4">
-          <Link
-            to="/"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            ← All projects
-          </Link>
-        </nav>
-
-        {/* Greeting */}
+        <div className="px-4 py-6 sm:px-6">
+          {/* Greeting */}
         <header className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             Welcome back, James
@@ -288,8 +280,9 @@ export default function FenderDashboard() {
             </table>
           </div>
         </section>
+        </div>
       </div>
-    </div>
+    </AppChrome>
   );
 }
 
