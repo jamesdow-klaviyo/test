@@ -98,11 +98,13 @@ export default function Inbox() {
   return (
     <div className="gmail-layout bg-background text-foreground">
       <aside className="gmail-sidebar gmail-sidebar-expanded">
-        <Link to="/" className="gmail-back-link">
-          ← All projects
+        <Link to="/" className="gmail-all-projects">
+          <Menu size={20} strokeWidth={1.5} className="shrink-0 text-foreground" aria-hidden />
+          <span className="min-w-0 truncate">All projects</span>
+          <ChevronDown size={18} strokeWidth={2} className="shrink-0 text-muted-foreground" aria-hidden />
         </Link>
         <button type="button" className="gmail-compose-btn" aria-label="Compose">
-          <PenSquare size={20} strokeWidth={1.5} />
+          <Plus size={20} strokeWidth={2} />
           Compose
         </button>
         <nav className="flex flex-col gap-0.5">
@@ -112,11 +114,9 @@ export default function Inbox() {
             className={`gmail-nav-item ${view === "inbox" ? "active" : ""}`}
           >
             <InboxIcon size={20} strokeWidth={1.5} />
-            Inbox
+            <span className="min-w-0 truncate">Inbox</span>
             {emails.length > 0 && (
-              <span className="ml-auto text-xs font-medium text-muted-foreground">
-                {emails.length}
-              </span>
+              <span className="gmail-nav-count">{emails.length}</span>
             )}
           </button>
           <button
@@ -125,11 +125,9 @@ export default function Inbox() {
             className={`gmail-nav-item ${view === "starred" ? "active" : ""}`}
           >
             <StarIcon size={20} strokeWidth={1.5} />
-            Starred
+            <span className="min-w-0 truncate">Starred</span>
             {emails.filter((e) => e.starred).length > 0 && (
-              <span className="ml-auto text-xs font-medium text-muted-foreground">
-                {emails.filter((e) => e.starred).length}
-              </span>
+              <span className="gmail-nav-count">{emails.filter((e) => e.starred).length}</span>
             )}
           </button>
         </nav>
