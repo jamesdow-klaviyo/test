@@ -9,6 +9,7 @@ function spaFallback() {
   return {
     name: 'spa-fallback',
     apply: 'serve',
+    enforce: 'pre',
     configureServer(server: { middlewares: { use: (fn: (req: any, res: any, next: () => void) => void) => void } }) {
       server.middlewares.use((req, _res, next) => {
         const url = req.url ?? ''
