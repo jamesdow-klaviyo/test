@@ -1,5 +1,10 @@
-/* Fender dashboard — matches Klaviyo home/dashboard palette */
+/* Fender dashboard — ascent design system tokens */
 :root {
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
   --background: oklch(0.98 0.004 260);
   --foreground: oklch(0.2 0.02 260);
   --card: oklch(1 0 0);
@@ -14,7 +19,6 @@
   --ring: oklch(0.45 0.12 260);
   --success: oklch(0.55 0.18 145);
   --success-muted: oklch(0.92 0.04 145);
-  /* App chrome: header + sidebar (not white); only content area is white */
   --chrome-bg: oklch(0.965 0.006 260);
 }
 
@@ -60,14 +64,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding-inline: 14px 1rem;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklch, var(--chrome-bg) 85%, white) 0%,
-    color-mix(in oklch, var(--chrome-bg) 95%, white) 50%,
-    var(--chrome-bg) 100%
-  );
-  backdrop-filter: blur(5px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--chrome-bg);
   z-index: 10;
 }
 
@@ -108,7 +105,7 @@
   width: 100%;
   max-width: 280px;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--muted);
   color: var(--muted-foreground);
   font-size: 13px;
@@ -126,7 +123,7 @@
   color: var(--muted-foreground);
   text-decoration: none;
   padding: 6px 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .fender-header__back:hover {
@@ -141,7 +138,7 @@
   width: 36px;
   height: 36px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--foreground);
 }
@@ -156,7 +153,7 @@
   gap: 6px;
   padding: 4px 8px 4px 4px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--foreground);
   font-size: 13px;
@@ -214,9 +211,10 @@
   color: var(--muted-foreground);
   font-size: 13px;
   font-weight: 450;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   min-height: 40px;
   position: relative;
+  border-left: 2px solid transparent;
 }
 
 .fender-sidebar__link:hover {
@@ -227,20 +225,11 @@
 .fender-sidebar__link--active {
   color: var(--foreground);
   background: var(--secondary);
-}
-
-.fender-sidebar__link--active .fender-sidebar__link-bar {
-  box-shadow: inset 2px 0 0 var(--primary);
+  border-left-color: var(--primary);
 }
 
 .fender-sidebar__link-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  border-radius: 2px 0 0 2px;
-  box-shadow: inset 1px 0 0 var(--border);
+  display: none;
 }
 
 .fender-sidebar__link-inner {
@@ -279,7 +268,7 @@
   padding: 4px 8px;
   color: var(--muted-foreground);
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .fender-sidebar__sublink:hover {
@@ -287,12 +276,12 @@
   background: var(--muted);
 }
 
-/* Only the content area is white */
+/* Only the content area is white — matches card/panel token */
 .fender-chrome__main {
   flex: 1 1 auto;
   overflow: auto;
   background: var(--card);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   margin: 0 8px 8px 0;
   box-shadow: 0 0 0 10px var(--chrome-bg);

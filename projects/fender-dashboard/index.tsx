@@ -110,9 +110,9 @@ export default function FenderDashboard() {
           </div>
         </section>
 
-        {/* Conversions card */}
-        <section className="mb-6 rounded-lg border border-border bg-card shadow-sm">
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-4 py-3">
+        {/* Conversions card — matches design system Card (rounded-xl, border, shadow-sm) */}
+        <section className="mb-6 rounded-xl border border-border bg-card shadow-sm">
+          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-6 py-4">
             <div>
               <h2 className="text-sm font-semibold text-foreground">
                 Conversions
