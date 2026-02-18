@@ -129,7 +129,7 @@ export default function FenderDashboard() {
               <ArrowUpRight size={14} />
             </a>
           </div>
-          <div className="p-4">
+          <div className="px-6 pb-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-lg border border-border bg-secondary/50 p-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
@@ -163,8 +163,8 @@ export default function FenderDashboard() {
         </section>
 
         {/* Flows card */}
-        <section className="mb-6 rounded-lg border border-border bg-card shadow-sm">
-          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-4 py-3">
+        <section className="mb-6 rounded-xl border border-border bg-card shadow-sm">
+          <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border px-6 py-4">
             <div>
               <h2 className="text-sm font-semibold text-foreground">Flows</h2>
               <p className="mt-0.5 text-xs text-muted-foreground">
@@ -183,23 +183,23 @@ export default function FenderDashboard() {
             <table className="dashboard-table w-full min-w-[600px] text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3">Flow</th>
-                  <th className="px-4 py-3">Types</th>
-                  <th className="px-4 py-3">Status</th>
-                  <th className="px-4 py-3 text-right">Conversion</th>
-                  <th className="px-4 py-3 text-right">Trend</th>
+                  <th className="px-6 py-3">Flow</th>
+                  <th className="px-6 py-3">Types</th>
+                  <th className="px-6 py-3">Status</th>
+                  <th className="px-6 py-3 text-right">Conversion</th>
+                  <th className="px-6 py-3 text-right">Trend</th>
                 </tr>
               </thead>
               <tbody>
                 {MOCK_FLOWS.map((row) => (
                   <tr key={row.id} className="transition-colors">
-                    <td className="px-4 py-3 font-medium text-foreground">
+                    <td className="px-6 py-3 font-medium text-foreground">
                       {row.name}
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">
+                    <td className="px-6 py-3 text-muted-foreground">
                       {row.types}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-6 py-3">
                       <span
                         className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${
                           row.status === "Live"
@@ -210,10 +210,10 @@ export default function FenderDashboard() {
                         {row.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right tabular-nums">
+                    <td className="px-6 py-3 text-right tabular-nums">
                       {formatNum(row.conversion)}
                     </td>
-                    <td className="px-4 py-3 text-right tabular-nums">
+                    <td className="px-6 py-3 text-right tabular-nums">
                       <span
                         className={
                           row.trend > 0
@@ -235,8 +235,8 @@ export default function FenderDashboard() {
         </section>
 
         {/* Recently sent card */}
-        <section className="rounded-lg border border-border bg-card shadow-sm">
-          <div className="border-b border-border px-4 py-3">
+        <section className="rounded-xl border border-border bg-card shadow-sm">
+          <div className="border-b border-border px-6 py-4">
             <h2 className="text-sm font-semibold text-foreground">
               Recently sent
             </h2>
@@ -248,19 +248,19 @@ export default function FenderDashboard() {
             <table className="dashboard-table w-full min-w-[600px] text-sm">
               <thead>
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3">Campaign</th>
-                  <th className="px-4 py-3">Type</th>
-                  <th className="px-4 py-3">Sent</th>
-                  <th className="px-4 py-3 text-right">Conversion</th>
+                  <th className="px-6 py-3">Campaign</th>
+                  <th className="px-6 py-3">Type</th>
+                  <th className="px-6 py-3">Sent</th>
+                  <th className="px-6 py-3 text-right">Conversion</th>
                 </tr>
               </thead>
               <tbody>
                 {MOCK_RECENTLY_SENT.map((row) => (
                   <tr key={row.id} className="transition-colors">
-                    <td className="px-4 py-3 font-medium text-foreground">
+                    <td className="px-6 py-3 font-medium text-foreground">
                       {row.name}
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">
+                    <td className="px-6 py-3 text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
                         {row.type === "Email" && <Mail size={14} />}
                         {row.type === "SMS" && <MessageSquare size={14} />}
@@ -268,10 +268,10 @@ export default function FenderDashboard() {
                         {row.type}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">
+                    <td className="px-6 py-3 text-muted-foreground">
                       {row.sent}
                     </td>
-                    <td className="px-4 py-3 text-right tabular-nums">
+                    <td className="px-6 py-3 text-right tabular-nums">
                       {formatNum(row.conversion)}
                     </td>
                   </tr>

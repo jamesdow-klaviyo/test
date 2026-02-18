@@ -85,7 +85,6 @@ export function Sidebar() {
                       href={item.url}
                       className={`fender-sidebar__link ${active ? "fender-sidebar__link--active" : ""}`}
                     >
-                      <span className="fender-sidebar__link-bar" />
                       <span className="fender-sidebar__link-inner">
                         <item.Icon className="fender-sidebar__icon" />
                         <span>{item.name}</span>
@@ -106,7 +105,6 @@ export function Sidebar() {
                     href={item.url}
                     className={`fender-sidebar__link ${active ? "fender-sidebar__link--active" : ""}`}
                   >
-                    <span className="fender-sidebar__link-bar" />
                     <span className="fender-sidebar__link-inner">
                       <item.Icon className="fender-sidebar__icon" />
                       <span>{item.name}</span>
@@ -120,7 +118,6 @@ export function Sidebar() {
                       `fender-sidebar__link ${linkActive ? "fender-sidebar__link--active" : ""}`
                     }
                   >
-                    <span className="fender-sidebar__link-bar" />
                     <span className="fender-sidebar__link-inner">
                       <item.Icon className="fender-sidebar__icon" />
                       <span>{item.name}</span>
